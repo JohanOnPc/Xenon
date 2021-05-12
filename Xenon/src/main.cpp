@@ -3,10 +3,9 @@
 #include <iostream>
 
 int main() {
-	Vector vec(1, 2, 3);
+	VectorD vec(1, 0, 0);
+	VectorD other(0, 0, 1);
 
-	std::cout << Vector(1, 0, 0).CrossProduct(Vector(0, 0, -1)) << "\n";
-	vec.Rate(Vector(1, 1, 11), 0.01);
-	std::cout << vec << "\n";
-	std::cout << Vector(2, 2).CrossProduct2() << "\n";
+	std::cout << vec.OrthogonalProjection(other) << "\n";
+	std::cout << other << " -> " << other.Length() << " -> " << vec.DotProduct(other) << "\n";
 }
