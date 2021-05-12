@@ -1,28 +1,32 @@
 #include <immintrin.h>
 #include <iostream>
 
-struct Vector3 {
+struct Vector {
 	__m128 _vec;
 
-	Vector3(float x, float y, float z);
-	Vector3(__m128 _other);
+	Vector(float x, float y);
+	Vector(float x, float y, float z);
+	Vector(float x, float y, float z, float w);
+	Vector(__m128 _other);
 
-	Vector3 operator+(const Vector3& other) const;
-	Vector3 operator+=(const Vector3& other);
-	Vector3 operator-(const Vector3& other) const;
-	Vector3 operator-=(const Vector3& other);
-	Vector3 operator*(const int& scalar) const;
-	Vector3 operator*=(const int& scalar);
-	Vector3 operator~();
-	float operator[](const int& index) const;
+	Vector operator+(const Vector& other) const;
+	Vector operator+=(const Vector& other);
+	Vector operator-(const Vector& other) const;
+	Vector operator-=(const Vector& other);
+	Vector operator*(float scalar) const;
+	Vector operator*=(float scalar);
+	Vector operator~();
+	float operator[](int index) const;
 
 	float Length() const;
 	void Normalize();
-	float DotProduct(const Vector3& other) const;
-	Vector3 CrossProduct(const Vector3& other) const;
-	float AngleBetween(const Vector3& other) const;
-	Vector3 OrtogonalProjection(const Vector3& other) const;
+	void Rate(const Vector& other, const float dt);
+	float DotProduct(const Vector& other) const;
+	Vector CrossProduct(const Vector& other) const;
+	Vector CrossProduct2() const;
+	float AngleBetween(const Vector& other) const;
+	Vector OrthogonalProjection(const Vector& other) const;
 
-	friend std::ostream& operator<<(std::ostream& os, const Vector3 other);
+	friend std::ostream& operator<<(std::ostream& os, const Vector other);
 };
 
